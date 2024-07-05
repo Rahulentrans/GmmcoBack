@@ -1,5 +1,4 @@
 name: Deploy to Azyre Web Service
-
 on:
   push:
     branches:
@@ -19,7 +18,7 @@ jobs:
         run: npm install
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
-      with:
-        app-name: gmmcohrweb
-        publish-profile: ${{ secrets.GMMCO_HR_COMMENTS }}
-        package: .
+        with:
+          app-name: gmmcohrweb
+          publish-profile: ${{ secrets.GMMCO_HR_COMMENTS }}
+          package: .
