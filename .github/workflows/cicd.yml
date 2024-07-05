@@ -1,0 +1,25 @@
+name: Deploy to Azyre Web Service
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  buils-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+      - name: Setup Node.js Version
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Install Dependencies
+        run: npm install
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+      with:
+        app-name: gmmcohrweb
+        publish-profile: ${{ secrets.GMMCO_HR_COMMENTS }}
+        package: .
